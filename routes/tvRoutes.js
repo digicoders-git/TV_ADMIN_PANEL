@@ -15,7 +15,8 @@ import {
   getTVsByCountry,
   getActiveTVs,
   validateTV,
-  toggleLogInOutTV
+  toggleLogInOutTV,
+  getTVCompleteDetails
 } from '../controllers/tvController.js';
 
 const router = express.Router();
@@ -27,6 +28,7 @@ router.patch('/log-in-out/toggle', toggleLogInOutTV);
 router.get('/', getTVs);                // Get all TVs (with filters)
 router.get('/active', getActiveTVs);
 router.get('/count', getTVCount);       // Get count of TVs
+router.get('/complete/:tvCode', getTVCompleteDetails); // Complete TV details by tvCode
 router.get('/:id', getTVById);          // Get a specific TV
 router.put('/:id', updateTV);           // Update TV details
 router.patch('/:id', updateTV);         // Alternative update TV (partial update)

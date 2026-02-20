@@ -83,6 +83,19 @@ export const loginAdmin = async (req, res) => {
         }, process.env.JWT_SECRET,
             { expiresIn: `${process.env.JWT_EXPIRES_IN}y` });
 
+        // Token console mein print karo
+        console.log("\n" + "=".repeat(80));
+        console.log("🔐 ADMIN LOGIN SUCCESSFUL");
+        console.log("=".repeat(80));
+        console.log("👤 User:", existingUser.name);
+        console.log("📧 Email:", existingUser.email);
+        console.log("📱 Mobile:", existingUser.mobile);
+        console.log("🎭 Role:", existingUser.role);
+        console.log("-".repeat(80));
+        console.log("🎫 JWT TOKEN:");
+        console.log(token);
+        console.log("=".repeat(80) + "\n");
+
         res.cookie("token", token, {
             httpOnly: process.env.HTTP_ONLY === 'true',     // Convert string to boolean
             secure: process.env.SECURE === 'true',          // Convert string to boolean
@@ -112,3 +125,80 @@ export const loginAdmin = async (req, res) => {
         });
     }
 }
+
+
+// Live Monitor API - Admin can see which TV is playing what ad
+export const getLiveMonitor = async (req, res) => {
+    try {
+        const { TV } = await import('../models/TV.js');
+        const { AdSchedule } = await import('../models/AdSchedule.js');
+
+        // Get current time (India timezone)
+        const now = new Date();
+        const currentTime = now.toLocaleTimeString("en-IN", {
+            timeZone: "Asia/Kolkata",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        });
+
+        // Get all online TVs
+        const tvs = await TV.find({ status: "online", isActive: true })
+            .populate('store', 'name')
+            .populate('zone', 'name')
+            .populate('city', 'name')
+            .select('tvId tvName status store zone city');
+
+        // Check each TV's schedule
+        const liveData = await Promise.all(tvs.map(async (tv) => {
+            // Get today's schedules for this TV
+            const schedules = await AdSchedule.find({
+                "tvs.tv": tv._id,
+                isActive: true,
+                validFrom: { $lte: now },
+                validTo: { $gte: now }
+            }).populate('ad', 'title videoUrl duration adId');
+
+            let currentlyPlaying = null;
+
+            // Check if any ad is playing NOW
+            for (const schedule of schedules) {
+                const tvEntry = schedule.tvs.find(t => t.tv.toString() === tv._id.toString());
+                
+                if (tvEntry && tvEntry.playTimes.includes(currentTime)) {
+                    currentlyPlaying = {
+                        ad: schedule.ad,
+                        scheduledTime: currentTime,
+                        playTimes: tvEntry.playTimes
+                    };
+                    break;
+                }
+            }
+
+            return {
+                ...tv.toObject(),
+                currentlyPlaying,
+                isPlaying: !!currentlyPlaying
+            };
+        }));
+
+        res.status(200).json({
+            success: true,
+            currentTime,
+            data: liveData,
+            summary: {
+                total: liveData.length,
+                playing: liveData.filter(tv => tv.isPlaying).length,
+                idle: liveData.filter(tv => !tv.isPlaying).length
+            }
+        });
+
+    } catch (error) {
+        console.error("Error in live monitor:", error);
+        res.status(500).json({
+            success: false,
+            message: "Server error",
+            error: error.message
+        });
+    }
+};

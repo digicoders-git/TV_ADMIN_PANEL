@@ -1,0 +1,177 @@
+{
+  "success": true,
+  "message": "Complete TV details with analytics fetched successfully",
+  "data": {
+    "tvInfo": {
+      "tvId": "17",
+      "tvName": "TV 17",
+      "status": "offline",
+      "isActive": true,
+      "lastSyncTime": null,
+      "createdAt": "2026-02-16T10:09:49.267Z",
+      "updatedAt": "2026-02-16T14:27:47.004Z",
+      "ageInDays": 4,
+      "ageInHours": 96,
+      "timeSinceLastSync": "Never synced"
+    },
+    "location": {
+      "store": {
+        "_id": "6992ec4cb17a83759f2a0a1e",
+        "name": "Big Bazaar Andheri"
+      },
+      "zone": {
+        "_id": "6992eb88b17a83759f2a0a13",
+        "name": "Andheri West"
+      },
+      "city": {
+        "_id": "6992eb37b17a83759f2a0a0b",
+        "name": "Mumbai"
+      },
+      "state": {
+        "_id": "6992eadbb17a83759f2a0a04",
+        "name": "Maharashtra"
+      },
+      "country": {
+        "_id": "6992ea84b17a83759f2a09ff",
+        "name": "India"
+      },
+      "coordinates": null,
+      "address": null,
+      "floor": null
+    },
+    "hardware": {
+      "screenSize": "55 inch",
+      "resolution": "4K",
+      "manufacturer": null,
+      "model": null,
+      "serialNumber": null,
+      "macAddress": "AA:BB:CC:DD:EE:01",
+      "ipAddress": null,
+      "firmwareVersion": null
+    },
+    "currentStatus": {
+      "currentTime": "04:05",
+      "isPlaying": false,
+      "currentlyPlaying": null
+    },
+    "todaySchedule": {
+      "date": "2026-02-20",
+      "totalAds": 0,
+      "totalScheduledPlays": 0,
+      "schedules": []
+    },
+    "allSchedules": {
+      "total": 2,
+      "active": 2,
+      "schedules": [
+        {
+          "_id": "69930c8cb17a83759f2a11f3",
+          "ad": {
+            "_id": "69930bc6b17a83759f2a0fe1",
+            "adId": "17",
+            "title": "Coca Cola Ad",
+            "duration": 33.215979,
+            "videoUrl": "https://res.cloudinary.com/ddycbowsy/video/upload/v1771244482/tv_ads/videos/video_ad_Screen%20Recording%202025-11-21%20162747_1771244429622.mp4"
+          },
+          "validFrom": "2026-02-16T12:24:00.000Z",
+          "validTo": "2026-02-17T12:24:00.000Z",
+          "playTimes": ["05:55", "05:56", "05:57"]
+        },
+        {
+          "_id": "69932315d848a1f6734b3a48",
+          "ad": {
+            "_id": "699321dfd848a1f6734b372a",
+            "adId": "18",
+            "title": "Pepsi Ad",
+            "duration": 33.215979,
+            "videoUrl": "https://res.cloudinary.com/ddycbowsy/video/upload/v1771250139/tv_ads/videos/video_ad_Screen%20Recording%202025-11-21%20162747_1771250124749.mp4"
+          },
+          "validFrom": "2026-02-16T08:30:00.000Z",
+          "validTo": "2026-02-18T08:30:00.000Z",
+          "playTimes": ["19:31", "19:35", "19:39", "19:38", "19:34", "19:33", "19:37", "19:36", "19:32", "19:40"]
+        }
+      ]
+    },
+    "analytics": {
+      "totalPlaysCount": 150,
+      "uniqueAdsPlayed": 5,
+      "totalPlayedDuration": {
+        "seconds": 4983,
+        "formatted": "1h 23m 3s"
+      },
+      "averagePlaysPerDay": 37,
+      "mostPlayedAd": {
+        "adId": "17",
+        "playCount": 45
+      },
+      "adPlayCounts": {
+        "17": 45,
+        "18": 35,
+        "19": 25,
+        "20": 25,
+        "21": 20
+      },
+      "dailyStats": [
+        {
+          "date": "2026-02-20",
+          "playsCount": 25,
+          "totalDuration": 830,
+          "formattedDuration": "13m 50s"
+        },
+        {
+          "date": "2026-02-19",
+          "playsCount": 30,
+          "totalDuration": 996,
+          "formattedDuration": "16m 36s"
+        },
+        {
+          "date": "2026-02-18",
+          "playsCount": 28,
+          "totalDuration": 930,
+          "formattedDuration": "15m 30s"
+        },
+        {
+          "date": "2026-02-17",
+          "playsCount": 35,
+          "totalDuration": 1162,
+          "formattedDuration": "19m 22s"
+        },
+        {
+          "date": "2026-02-16",
+          "playsCount": 32,
+          "totalDuration": 1063,
+          "formattedDuration": "17m 43s"
+        }
+      ]
+    },
+    "recentLogs": {
+      "total": 150,
+      "logs": [
+        {
+          "_id": "log1",
+          "ad": {
+            "title": "Coca Cola Ad",
+            "adId": "17",
+            "duration": 33.215979
+          },
+          "playedAt": "2026-02-20T03:55:00.000Z"
+        },
+        {
+          "_id": "log2",
+          "ad": {
+            "title": "Pepsi Ad",
+            "adId": "18",
+            "duration": 33.215979
+          },
+          "playedAt": "2026-02-20T03:30:00.000Z"
+        }
+      ]
+    },
+    "performance": {
+      "uptimePercentage": "Offline",
+      "lastOnlineTime": null,
+      "totalActiveDays": 4,
+      "averageUptimePerDay": "Variable"
+    }
+  }
+}
