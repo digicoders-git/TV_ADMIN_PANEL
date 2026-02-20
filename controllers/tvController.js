@@ -1069,10 +1069,10 @@ export const getTVCompleteDetails = async (req, res) => {
         })).slice(0, 30) // Last 30 days
       },
       
-      // Recent Ad Logs
-      recentLogs: {
+      // All Ad Logs
+      allLogs: {
         total: adLogs.length,
-        logs: adLogs.slice(0, 20) // Last 20 logs
+        logs: adLogs
       },
       
       // Performance Metrics
